@@ -1,9 +1,9 @@
 import { Component } from 'react';
-import { Container } from 'components/App.styled';
 import Section from 'components/Section';
 import FeedbackOptions from 'components/FeedbackOptions';
 import Statistics from 'components/Statistics';
 import Notification from 'components/Notification';
+import { Container } from './App.styled';
 
 export class App extends Component {
   state = {
@@ -20,8 +20,6 @@ export class App extends Component {
         [name]: prevState[name] + 1,
       };
     });
-
-    // console.log(Object.keys(this.state));
   };
 
   countTotalFeedback = () => {
@@ -54,8 +52,9 @@ export class App extends Component {
             onLeaveFeedback={this.onLeaveFeedback}
           />
         </Section>
-        {total > 0 ? (
-          <Section title="Statistics">
+
+        <Section title="Statistics">
+          {total > 0 ? (
             <Statistics
               good={good}
               neutral={neutral}
@@ -63,10 +62,10 @@ export class App extends Component {
               total={total}
               positivePercentage={this.countPositiveFeedbackPercentage()}
             />
-          </Section>
-        ) : (
-          <Notification message="There is no feedback" />
-        )}
+          ) : (
+            <Notification message="There is no feedback" />
+          )}
+        </Section>
       </Container>
     );
   }
